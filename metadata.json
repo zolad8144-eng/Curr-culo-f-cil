@@ -1,0 +1,6 @@
+{
+  "name": "Currículo Fácil Angola",
+  "description": "Gerador de currículos profissional e moderno adaptado ao mercado de trabalho de Angola. Modelos profissionais, preview em tempo real e exportação para PDF e Word.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
