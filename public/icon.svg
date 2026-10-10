@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Outer Glow / Ring -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="none" stroke="#2563eb" stroke-width="4" stroke-opacity="0.3" />
+
+  <!-- Document Body -->
+  <rect x="120" y="80" width="272" height="352" rx="28" fill="#ffffff" />
+  
+  <!-- Document Fold / Top Right Accent -->
+  <path d="M 336 80 L 392 136 L 336 136 Z" fill="#cbd5e1" />
+
+  <!-- Document Header Banner -->
+  <rect x="148" y="120" width="168" height="24" rx="8" fill="url(#primaryGrad)" />
+
+  <!-- Lines representing Resume sections -->
+  <rect x="148" y="164" width="216" height="12" rx="6" fill="#94a3b8" />
+  <rect x="148" y="188" width="176" height="12" rx="6" fill="#cbd5e1" />
+  <rect x="148" y="212" width="196" height="12" rx="6" fill="#cbd5e1" />
+
+  <rect x="148" y="248" width="120" height="16" rx="6" fill="#3b82f6" />
+  <rect x="148" y="276" width="216" height="12" rx="6" fill="#cbd5e1" />
+  <rect x="148" y="300" width="180" height="12" rx="6" fill="#cbd5e1" />
+
+  <!-- Avatar Circle in Resume -->
+  <circle cx="330" cy="256" r="28" fill="#e2e8f0" stroke="#3b82f6" stroke-width="4" />
+  <circle cx="330" cy="250" r="10" fill="#3b82f6" />
+  <path d="M 314 274 A 16 16 0 0 1 346 274 Z" fill="#3b82f6" />
+
+  <!-- Angola Star / Badge in bottom right corner -->
+  <circle cx="380" cy="380" r="48" fill="#dc2626" stroke="#ffffff" stroke-width="6" />
+  <path d="M 380 348 L 389 372 L 414 372 L 394 388 L 401 412 L 380 397 L 359 412 L 366 388 L 346 372 L 371 372 Z" fill="url(#goldGrad)" />
+</svg>

@@ -6,24 +6,31 @@ import { Navbar } from './components/Navbar';
 import { WizardSteps } from './components/WizardSteps';
 import { ResumePreview } from './components/ResumePreview';
 import { TipsModal } from './components/TipsModal';
+import { InstallModal } from './components/InstallModal';
+import { ShareModal } from './components/ShareModal';
 import { exportToPdf } from './utils/pdfExport';
 import { exportToWord } from './utils/docxExport';
 import { shareViaWhatsApp } from './utils/whatsappShare';
+import { usePWAInstall } from './hooks/usePWAInstall';
 import {
   FileDown,
   FileText,
   Share2,
   CheckCircle,
-  HelpCircle,
   Sparkles,
   Smartphone,
   Eye,
+  Download,
+  X,
 } from 'lucide-react';
 
 const STORAGE_KEY = 'curriculo_facil_angola_data_v1';
 const CONFIG_KEY = 'curriculo_facil_angola_config_v1';
 
 export default function App() {
+  // PWA Install hook
+  const { isInstallable, isInstalled, isIOS, isMobile, install } = usePWAInstall();
+
   // Load saved state or default sample
   const [data, setData] = useState<ResumeData>(() => {
     try {
@@ -58,6 +65,9 @@ export default function App() {
   const [activeMobileTab, setActiveMobileTab] = useState<'form' | 'preview'>('form');
   const [isExportingPdf, setIsExportingPdf] = useState<boolean>(false);
   const [showTipsModal, setShowTipsModal] = useState<boolean>(false);
+  const [showInstallModal, setShowInstallModal] = useState<boolean>(false);
+  const [showShareModal, setShowShareModal] = useState<boolean>(false);
+  const [showBanner, setShowBanner] = useState<boolean>(true);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [lastSavedText, setLastSavedText] = useState<string>('Salvo automaticamente');
 
@@ -163,6 +173,18 @@ export default function App() {
     shareViaWhatsApp(data);
   };
 
+  // Trigger Install
+  const handleInstallClick = async (): Promise<boolean> => {
+    if (isInstallable) {
+      const res = await install();
+      if (res) {
+        showToast('Aplicação instalada com sucesso!');
+        return true;
+      }
+    }
+    return false;
+  };
+
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       {/* Top Navigation */}
@@ -174,11 +196,46 @@ export default function App() {
         onExportWord={handleExportWord}
         onShareWhatsApp={handleShareWhatsApp}
         onOpenTips={() => setShowTipsModal(true)}
+        onOpenShare={() => setShowShareModal(true)}
+        onOpenInstall={() => setShowInstallModal(true)}
+        isInstallable={isInstallable}
+        isInstalled={isInstalled}
         isExportingPdf={isExportingPdf}
         lastSavedText={lastSavedText}
         activeMobileTab={activeMobileTab}
         setActiveMobileTab={setActiveMobileTab}
       />
+
+      {/* Optional Top Mobile Install Banner */}
+      {!isInstalled && showBanner && (
+        <div className="bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 text-white px-3 sm:px-4 py-2 border-b border-blue-900/50 flex items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 overflow-hidden">
+            <span className="p-1 rounded-lg bg-blue-600/50 shrink-0">
+              <Smartphone className="w-4 h-4 text-amber-300" />
+            </span>
+            <p className="truncate">
+              <strong className="font-bold text-white">Instale no Telemóvel:</strong> Tenha o gerador sempre à mão no ecrã inicial!
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => setShowInstallModal(true)}
+              className="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold rounded-lg transition text-[11px] shadow"
+            >
+              Instalar App
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowBanner(false)}
+              className="p-1 text-slate-400 hover:text-white"
+              title="Fechar aviso"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Main Container: Split screen on Desktop */}
       <main className="flex-1 max-w-[1700px] w-full mx-auto p-3 sm:p-5 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
@@ -214,8 +271,32 @@ export default function App() {
         </div>
       </main>
 
-      {/* Floating Action Button for Mobile when in Form tab */}
-      <div className="lg:hidden fixed bottom-4 right-4 z-40 flex flex-col gap-2">
+      {/* Floating Action Bar for Mobile */}
+      <div className="lg:hidden fixed bottom-4 right-4 z-40 flex items-center gap-2">
+        {/* Share Quick Button */}
+        <button
+          type="button"
+          onClick={() => setShowShareModal(true)}
+          className="p-3 bg-white text-slate-800 rounded-2xl shadow-xl border border-slate-200 active:scale-95 transition"
+          title="Partilhar"
+        >
+          <Share2 className="w-4 h-4 text-blue-600" />
+        </button>
+
+        {/* Install Quick Button if not installed */}
+        {!isInstalled && (
+          <button
+            type="button"
+            onClick={() => setShowInstallModal(true)}
+            className="flex items-center gap-1.5 px-3.5 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-2xl shadow-xl font-bold text-xs active:scale-95 transition"
+            title="Instalar no Telemóvel"
+          >
+            <Smartphone className="w-4 h-4" />
+            <span>Instalar</span>
+          </button>
+        )}
+
+        {/* Switch Form / Preview Button */}
         <button
           type="button"
           onClick={() =>
@@ -224,7 +305,7 @@ export default function App() {
           className="flex items-center gap-2 px-4 py-3 bg-slate-900 text-white rounded-2xl shadow-xl font-bold text-xs border border-slate-700 active:scale-95 transition"
         >
           <Eye className="w-4 h-4 text-blue-400" />
-          {activeMobileTab === 'form' ? 'Ver Pré-visualização' : 'Voltar ao Formulário'}
+          {activeMobileTab === 'form' ? 'Ver Pré-visualização' : 'Formulário'}
         </button>
       </div>
 
@@ -240,6 +321,24 @@ export default function App() {
       <TipsModal
         isOpen={showTipsModal}
         onClose={() => setShowTipsModal(false)}
+      />
+
+      {/* Install Modal */}
+      <InstallModal
+        isOpen={showInstallModal}
+        onClose={() => setShowInstallModal(false)}
+        isInstallable={isInstallable}
+        isInstalled={isInstalled}
+        isIOS={isIOS}
+        onInstall={handleInstallClick}
+      />
+
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        candidateName={data.personalInfo.fullName}
+        onShareCvWhatsApp={handleShareWhatsApp}
       />
     </div>
   );
