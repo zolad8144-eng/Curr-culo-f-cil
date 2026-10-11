@@ -85,7 +85,7 @@ export const TipsModal: React.FC<Props> = ({ isOpen, onClose }) => {
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition"
+            className="px-5 py-2.5 text-xs font-black rounded-xl btn-wine-gold cursor-pointer"
           >
             Entendido, Continuar a Editar
           </button>

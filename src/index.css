@@ -52,7 +52,123 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.2s ease-out forwards;
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Pulsating golden radar/beacon ring */
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes goldGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.55), 0 0 25px rgba(160, 0, 24, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(251, 191, 36, 0.9), 0 0 35px rgba(220, 38, 38, 0.6);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.btn-pulse-glow {
+  animation: goldGlow 2s infinite ease-in-out;
+}
+
+.beacon-ring-1 {
+  animation: beaconPulse 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.beacon-ring-2 {
+  animation: beaconPulse 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite 0.7s;
+}
+
+/* Wine Red & Gold 3D Button Style */
+.btn-wine-gold {
+  background: linear-gradient(180deg, #a3081e 0%, #820014 50%, #54000c 100%);
+  border: 3px solid #d4af37;
+  color: #fff4cc;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-wine-gold:hover {
+  background: linear-gradient(180deg, #b80c25 0%, #940018 50%, #63000f 100%);
+  border-color: #fde047;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(160, 0, 24, 0.45), 0 0 16px rgba(212, 175, 55, 0.6);
+}
+
+.btn-wine-gold:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Black with Gold Borders */
+.btn-black-gold {
+  background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+  border: 1.5px solid #d4af37;
+  color: #fef08a;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-black-gold:hover {
+  background: linear-gradient(180deg, #27272a 0%, #111113 100%);
+  border-color: #fde047;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Metallic Gold Button */
+.btn-gold {
+  background: linear-gradient(180deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+  border: 1.5px solid #fef08a;
+  color: #450a0a;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 3px 12px rgba(202, 138, 4, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(180deg, #fef9c3 0%, #facc15 50%, #d97706 100%);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(234, 179, 8, 0.5);
+}
+
+/* 3D Gold Extrusion text effect */
+.text-3d-gold {
+  color: #990014;
+  -webkit-text-stroke: 1.5px #d4af37;
+  text-shadow:
+    0 1px 0 #b38600,
+    0 2px 0 #997300,
+    0 3px 0 #806000,
+    0 4px 0 #664d00,
+    0 6px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* High Fidelity Print Styles */

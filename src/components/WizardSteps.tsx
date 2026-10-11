@@ -257,21 +257,21 @@ export const WizardSteps: React.FC<Props> = ({
                 key={step.number}
                 type="button"
                 onClick={() => setCurrentStep(step.number)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition shrink-0 ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-sm ring-2 ring-blue-500/20'
+                    ? 'btn-wine-gold shadow-md'
                     : isCompleted
-                    ? 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                    : 'text-slate-500 hover:bg-slate-100'
+                    ? 'bg-[#18181b] text-[#fef08a] border border-[#d4af37]/60'
+                    : 'text-slate-600 hover:bg-slate-200'
                 }`}
               >
                 <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                  className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${
                     isActive
-                      ? 'bg-white text-blue-600'
+                      ? 'bg-[#fef08a] text-[#7a0010]'
                       : isCompleted
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-slate-200 text-slate-600'
+                      ? 'bg-amber-400 text-slate-950'
+                      : 'bg-slate-300 text-slate-700'
                   }`}
                 >
                   {isCompleted ? '✓' : step.number}
@@ -283,9 +283,9 @@ export const WizardSteps: React.FC<Props> = ({
         </div>
 
         {/* Progress bar */}
-        <div className="w-full bg-slate-200 rounded-full h-1 mt-3 overflow-hidden">
+        <div className="w-full bg-slate-200 rounded-full h-1.5 mt-3 overflow-hidden border border-amber-300/40">
           <div
-            className="bg-blue-600 h-1 transition-all duration-300"
+            className="bg-gradient-to-r from-[#990014] via-[#d4af37] to-[#fbbf24] h-1.5 transition-all duration-300"
             style={{ width: `${(currentStep / 6) * 100}%` }}
           />
         </div>
@@ -462,10 +462,10 @@ export const WizardSteps: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setShowSuggestions(!showSuggestions)}
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition"
+                className="text-xs font-black flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-gold cursor-pointer shadow-sm"
               >
-                <SparkleIcon className="w-3.5 h-3.5" />
-                {showSuggestions ? 'Ocultar Exemplos' : 'Ver Exemplos Prontos'}
+                <SparkleIcon className="w-3.5 h-3.5 text-[#5e000d]" />
+                <span>{showSuggestions ? 'Ocultar Exemplos' : 'Ver Exemplos Prontos'}</span>
               </button>
             </div>
 
@@ -528,9 +528,9 @@ export const WizardSteps: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={addExperience}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-black rounded-xl btn-wine-gold cursor-pointer shadow-md"
               >
-                <Plus className="w-4 h-4" /> + Adicionar Mais Experiência
+                <Plus className="w-4 h-4 text-[#fef08a]" /> + Adicionar Experiência
               </button>
             </div>
 
@@ -686,9 +686,9 @@ export const WizardSteps: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={addEducation}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-black rounded-xl btn-wine-gold cursor-pointer shadow-md"
               >
-                <Plus className="w-4 h-4" /> + Adicionar Formação
+                <Plus className="w-4 h-4 text-[#fef08a]" /> + Adicionar Formação
               </button>
             </div>
 
@@ -876,9 +876,9 @@ export const WizardSteps: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={() => addSkill('', 'Intermédio')}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-black rounded-xl btn-gold cursor-pointer shadow-sm"
                 >
-                  <Plus className="w-3.5 h-3.5" /> + Nova Competência
+                  <Plus className="w-3.5 h-3.5 text-[#5e000d]" /> + Nova Competência
                 </button>
               </div>
 
@@ -940,9 +940,9 @@ export const WizardSteps: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={addLanguage}
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                  className="text-xs font-bold flex items-center gap-1 px-2.5 py-1.5 rounded-xl btn-black-gold cursor-pointer"
                 >
-                  <Plus className="w-3.5 h-3.5" /> Adicionar Idioma
+                  <Plus className="w-3.5 h-3.5 text-amber-400" /> Adicionar Idioma
                 </button>
               </div>
 
@@ -1009,7 +1009,7 @@ export const WizardSteps: React.FC<Props> = ({
                       input.value = '';
                     }
                   }}
-                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition"
+                  className="px-3.5 py-1.5 text-xs font-black rounded-xl btn-gold cursor-pointer"
                 >
                   Adicionar
                 </button>
@@ -1050,9 +1050,9 @@ export const WizardSteps: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={addReference}
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                  className="text-xs font-bold flex items-center gap-1 px-2.5 py-1.5 rounded-xl btn-black-gold cursor-pointer"
                 >
-                  <Plus className="w-3.5 h-3.5" /> Adicionar Referência
+                  <Plus className="w-3.5 h-3.5 text-amber-400" /> Adicionar Referência
                 </button>
               </div>
 
@@ -1127,30 +1127,33 @@ export const WizardSteps: React.FC<Props> = ({
           type="button"
           onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
           disabled={currentStep === 1}
-          className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition shadow-sm"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl btn-black-gold disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
         >
-          <ChevronLeft className="w-4 h-4" /> Anterior
+          <ChevronLeft className="w-4 h-4 text-amber-400" /> Anterior
         </button>
 
-        <span className="text-xs text-slate-500 font-medium">
+        <span className="text-xs text-slate-700 font-bold">
           Etapa {currentStep} de 6
         </span>
 
         {currentStep < 6 ? (
-          <button
-            type="button"
-            onClick={() => setCurrentStep(Math.min(6, currentStep + 1))}
-            className="inline-flex items-center gap-1.5 px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition shadow-sm"
-          >
-            Próximo <ChevronRight className="w-4 h-4" />
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setCurrentStep(Math.min(6, currentStep + 1))}
+              className="relative z-10 inline-flex items-center gap-1.5 px-6 py-2.5 text-xs sm:text-sm font-black rounded-xl btn-wine-gold btn-pulse-glow cursor-pointer shadow-md"
+            >
+              <span>Próximo</span>
+              <ChevronRight className="w-4 h-4 text-[#fef08a]" />
+            </button>
+          </div>
         ) : (
           <button
             type="button"
             onClick={() => setCurrentStep(1)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 rounded-xl transition"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 text-xs font-black rounded-xl btn-gold cursor-pointer shadow-md"
           >
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Rever Dados
+            <CheckCircle2 className="w-4 h-4 text-[#5e000d]" /> Rever Dados
           </button>
         )}
       </div>

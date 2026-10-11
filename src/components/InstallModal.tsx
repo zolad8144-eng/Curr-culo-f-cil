@@ -53,23 +53,23 @@ export const InstallModal: React.FC<Props> = ({
         </button>
 
         {/* Top Header Card */}
-        <div className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-6 text-white text-center relative overflow-hidden">
-          <div className="w-20 h-20 mx-auto mb-3 rounded-2xl bg-slate-800 border-2 border-blue-400/40 p-1 shadow-xl flex items-center justify-center overflow-hidden">
+        <div className="bg-gradient-to-br from-[#990014] via-[#66000c] to-[#0a0a0c] p-6 text-white text-center relative overflow-hidden border-b border-[#d4af37]/50">
+          <div className="w-20 h-20 mx-auto mb-3 rounded-2xl bg-black/40 border-2 border-[#d4af37] p-1 shadow-2xl flex items-center justify-center overflow-hidden">
             <img
               src="/icon.svg"
-              alt="Currículo Fácil Angola"
+              alt="Currículo Vitae Fácil Angola"
               className="w-full h-full object-contain"
             />
           </div>
 
-          <h2 className="text-xl font-extrabold tracking-tight">
+          <h2 className="text-xl font-black tracking-tight text-[#fef08a]">
             Instalar no Telemóvel
           </h2>
-          <p className="text-xs text-blue-200 mt-1 max-w-xs mx-auto">
-            Adicione o <strong className="text-white">Currículo Fácil Angola</strong> ao ecrã inicial do seu telemóvel como uma aplicação nativa.
+          <p className="text-xs text-amber-100/90 mt-1 max-w-xs mx-auto">
+            Adicione o <strong className="text-white">Currículo Vitae Fácil</strong> ao ecrã inicial do seu telemóvel como uma aplicação nativa.
           </p>
 
-          <div className="flex justify-center gap-4 mt-4 text-[11px] text-slate-300">
+          <div className="flex justify-center gap-4 mt-4 text-[11px] text-amber-200">
             <span className="flex items-center gap-1">
               <Zap className="w-3.5 h-3.5 text-amber-400" /> Super Rápido
             </span>
@@ -77,7 +77,7 @@ export const InstallModal: React.FC<Props> = ({
               <WifiOff className="w-3.5 h-3.5 text-emerald-400" /> Salvo no Telemóvel
             </span>
             <span className="flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" /> Sem Anúncios
+              <Sparkles className="w-3.5 h-3.5 text-[#fef08a]" /> Sem Anúncios
             </span>
           </div>
         </div>
@@ -96,7 +96,7 @@ export const InstallModal: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-3 w-full py-2.5 px-4 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-slate-800"
+                className="mt-3 w-full py-2.5 px-4 rounded-xl font-black text-xs btn-wine-gold cursor-pointer"
               >
                 Concluir
               </button>
@@ -104,8 +104,8 @@ export const InstallModal: React.FC<Props> = ({
           ) : isInstallable ? (
             /* One click native install button */
             <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 text-xs space-y-1.5 text-blue-900">
-                <p className="font-semibold">Instalação direta disponível:</p>
+              <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 text-xs space-y-1.5 text-amber-950">
+                <p className="font-bold text-[#800010]">Instalação direta disponível:</p>
                 <p className="text-slate-600">
                   Clique no botão abaixo para fixar o aplicativo diretamente no ecrã de aplicações do seu dispositivo Android ou computador.
                 </p>
@@ -114,9 +114,10 @@ export const InstallModal: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={handleInstallClick}
-                className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-2xl font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 transition transform active:scale-98"
+                className="w-full py-3.5 px-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 btn-wine-gold btn-pulse-glow cursor-pointer"
               >
-                <Download className="w-4 h-4" /> Instalar Aplicativo Agora
+                <Download className="w-4 h-4 text-[#fef08a]" />
+                <span className="text-[#fef08a]">Instalar Aplicativo Agora</span>
               </button>
             </div>
           ) : isIOS ? (
